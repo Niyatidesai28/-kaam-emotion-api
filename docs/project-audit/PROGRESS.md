@@ -30,3 +30,8 @@ Tests: baseline3 failures/10 passes; fixed13 passes, compileall/diff and limited
 scan pass. Modified main.py/.gitignore plus tests/dev requirements and documentation.
 Blockers: model artifacts/frontend absent; no trained-model quality verification; framework
 upgrade compatibility untestable. Next: final docs checkpoint/publication, then Resume-checking.
+
+Publication evidence: repair b44674ff55cc9ee7389d28051b3d7cd45821ad30 and documentation
+5920c5d07394725eea83d4b67f758ab1a423965f pushed successfully; draft PR updated.
+GitHub reports no checks and no workflow exists. Phase17 COMPLETED for feasible publication;
+real model/frontend verification remains BLOCKED, not a test success.
