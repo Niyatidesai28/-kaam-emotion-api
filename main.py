@@ -1,14 +1,14 @@
 
 import torch
 import json
-import os
+from pathlib import Path
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 # ── Load model on startup ────────────────────────────────────
-MODEL_PATH = "./model"
+MODEL_PATH = Path(__file__).resolve().parent / "model"
 
 with open(f"{MODEL_PATH}/kaam_config.json", "r") as f:
     config = json.load(f)
@@ -42,6 +42,10 @@ class EmotionRequest(BaseModel):
 
 # ── Predict function ─────────────────────────────────────────
 def predict_emotion(text: str) -> dict:
+    if not text.strip():
+        return {"emotion": "neutral", "confidence": 1.0,
+                "all_scores": {}, "chunks": 0, "note": "empty"}
+
     tokens     = tokenizer(text, truncation=False, padding=False)
     total_tokens = len(tokens["input_ids"])
 
@@ -123,9 +127,6 @@ def health():
 
 @app.post("/detect-emotion")
 def detect_emotion(request: EmotionRequest):
-    if not request.text.strip():
-        return {"emotion": "neutral", "confidence": 1.0,
-                "all_scores": {}, "chunks": 0, "note": "empty"}
     return predict_emotion(request.text)
 
 @app.post("/detect-emotion/batch")
