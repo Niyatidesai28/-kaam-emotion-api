@@ -1,0 +1,22 @@
+# KAAM glossary
+
+- Tokenizer: converts text to model IDs; AutoTokenizer loads its saved configuration.
+- Token: model input unit, often a subword; not necessarily an English word.
+- Tensor: numeric multidimensional array used by PyTorch.
+- Logits: unnormalized classifier outputs before softmax.
+- Softmax: normalizes scores across labels; not a calibration guarantee.
+- Argmax: index of the largest value, mapped through id2label.
+- Padding: fills shorter sequences to a fixed length.
+- Attention mask: marks real positions vs padded positions.
+- Special tokens: model boundary markers; long path hardcodes BERT-style IDs.
+- Stride: start-position increment; 108 here with 126-token windows.
+- Overlap: shared content between adjacent windows; 18 tokens for full windows.
+- eval(): puts model modules into evaluation behavior, e.g. disables dropout.
+- no_grad(): disables gradient recording during the context; distinct from eval().
+- Inference: using trained parameters to predict; loading calls exist but artifacts absent.
+- Training: updating parameters using examples/loss; no training implementation here.
+- Calibration: correspondence of reported confidence to observed correctness; unmeasured.
+- Fixture: controlled substitute used to test orchestration, not model quality.
+- Schema: expected input shape/types; EmotionRequest is not a database table.
+- CORS: browser cross-origin policy, not authentication.
+- Readiness: ability to perform work with required resources; health string alone is insufficient.

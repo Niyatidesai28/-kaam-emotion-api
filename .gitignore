@@ -5,3 +5,6 @@ __pycache__/
 model/
 *.pt
 *.bin
+
+.venv/
+.pytest_cache/
